@@ -2,6 +2,7 @@
 
 class Employee
 {
+    private $id;
     private $name;
     private $day;
     private $addrees;
@@ -14,6 +15,17 @@ class Employee
         $this->addrees = $addrees;
         $this->position = $position;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
 
     public function getName()
     {

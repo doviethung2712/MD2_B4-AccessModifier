@@ -24,7 +24,7 @@ $arrs = $data->loadData();
         <th>Day Of Birth</th>
         <th>Addrees</th>
         <th>Position</th>
-        <th>Action</th>
+        <th colspan="3">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -35,10 +35,11 @@ $arrs = $data->loadData();
             <td><?php echo $arr->day; ?></td>
             <td><?php echo $arr->addrees; ?></td>
             <td><?php echo $arr->position; ?></td>
-            <td><a href="delete.php?id=<?php echo $key ?>">Delete</a></td>
-            <!--            <td><a onclick="return confirm('Are you sure you want to delete?')" href="delete.php?id=-->
-            <?php //echo $key ?><!--">Delete</a>-->
-            <!--            </td>-->
+            <td><a onclick=" confirm(return 'Bạn có muốn xóa không?')"
+                   href="delete.php?id=<?php echo $key ?>">Delete</a></td>
+            <td><a href="update.php?id=<?php echo $key?>">Update</a></td>
+            <td><a href="detail.php?id=<?php echo $key?>">Detail</a></td>
+
         </tr>
     <?php endforeach; ?>
     </tbody>

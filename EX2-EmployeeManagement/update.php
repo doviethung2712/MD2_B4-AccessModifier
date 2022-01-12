@@ -1,3 +1,12 @@
+<?php
+include_once 'Employee.php';
+include_once 'Data.php';
+$data = new Data();
+if(isset($_REQUEST["id"])) {
+    $id = $_REQUEST["id"];
+    $arr = $data->getEmployeeById($id);
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,10 +18,10 @@
 </head>
 <body>
 <form action="" method="post">
-    <input type="text" name="name" placeholder="Nhập tên">
-    <input type="date" name="day">
-    <input type="text" name="addrees" placeholder="Nhập địa chỉ">
-    <input type="text" name="position" placeholder="Nhập vị trí">
+    <input type="text" name="name" value="<?php echo $arr->getName();?>">
+    <input type="date" name="day" value="<?php echo $arr->getDay();?>">
+    <input type="text" name="addrees" value="<?php echo $arr->getAddrees();?>">
+    <input type="text" name="position" value="<?php echo $arr->getPosition();?>">
     <button>ADD</button>
 </form>
 
@@ -21,7 +30,7 @@
 </html>
 <?php
 include_once 'Employee.php';
-include_once 'Data.php';
+include_once "Data.php";
 $data = new Data();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_REQUEST['name'];
@@ -29,13 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $addrees = $_REQUEST['addrees'];
     $position = $_REQUEST['position'];
     $employee = new Employee($name, $day, $addrees, $position);
-    $id = $data->getId();
-    $employee->setId($id);
-    if ($employee == "") {
-        echo "Vui lòng nhập thông tin";
-    } else {
-        $data->addNewData($employee);
-    }
+    $data->updateEmloyee($id,$employee);
     header("Location:index.php");
 
 }
